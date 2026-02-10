@@ -1,0 +1,107 @@
+{
+  "app": {
+    "title": "Social Support Application",
+    "language": "Language"
+  },
+  "nav": {
+    "ariaLabel": "Main navigation",
+    "newApplication": "New Application",
+    "savedApplications": "Saved Applications"
+  },
+  "savedApplications": {
+    "empty": "No saved applications yet. Submit an application from New Application.",
+    "application": "Application",
+    "viewApplication": "View application"
+  },
+  "applicationDetail": {
+    "title": "Application",
+    "submittedAt": "Submitted",
+    "notFound": "Application not found.",
+    "backToList": "Back to Saved Applications",
+    "jsonLabel": "Application data (JSON)"
+  },
+  "steps": {
+    "personalInfo": "Personal Information",
+    "familyFinancial": "Family & Financial Info",
+    "situationDescriptions": "Situation Descriptions"
+  },
+  "form": {
+    "name": "Full Name",
+    "nationalId": "National ID",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "phone": "Phone",
+    "email": "Email",
+    "maritalStatus": "Marital Status",
+    "dependents": "Number of Dependents",
+    "employmentStatus": "Employment Status",
+    "monthlyIncome": "Monthly Income",
+    "housingStatus": "Housing Status",
+    "currentFinancialSituation": "Current Financial Situation",
+    "employmentCircumstances": "Employment Circumstances",
+    "reasonForApplying": "Reason for Applying",
+    "helpMeWrite": "Help Me Write"
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "preferNotToSay": "Prefer not to say"
+  },
+  "maritalStatus": {
+    "single": "Single",
+    "married": "Married",
+    "divorced": "Divorced",
+    "widowed": "Widowed"
+  },
+  "employmentStatus": {
+    "employed": "Employed",
+    "unemployed": "Unemployed",
+    "selfEmployed": "Self-Employed",
+    "student": "Student",
+    "retired": "Retired",
+    "other": "Other"
+  },
+  "housingStatus": {
+    "own": "Own",
+    "rent": "Rent",
+    "livingWithFamily": "Living with Family",
+    "homeless": "Homeless",
+    "other": "Other"
+  },
+  "actions": {
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit Application",
+    "accept": "Accept",
+    "edit": "Edit",
+    "discard": "Discard",
+    "close": "Close"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "minLength": "Minimum {{min}} characters required",
+    "maxLength": "Maximum {{max}} characters allowed"
+  },
+  "ai": {
+    "generating": "Generating suggestion...",
+    "suggestionTitle": "AI Suggestion",
+    "error": "Failed to generate suggestion. Please try again.",
+    "timeout": "Request timed out. Please try again."
+  },
+  "toast": {
+    "saveSuccess": "Progress saved successfully",
+    "submitSuccess": "Application submitted successfully",
+    "submitError": "Failed to submit application",
+    "loadError": "Failed to load saved progress"
+  },
+  "errors": {
+    "completePreviousStep": "Please complete the previous step before proceeding."
+  }
+}

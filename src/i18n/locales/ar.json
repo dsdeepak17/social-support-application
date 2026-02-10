@@ -1,0 +1,107 @@
+{
+  "app": {
+    "title": "طلب الدعم الاجتماعي",
+    "language": "اللغة"
+  },
+  "nav": {
+    "ariaLabel": "التنقل الرئيسي",
+    "newApplication": "طلب جديد",
+    "savedApplications": "الطلبات المحفوظة"
+  },
+  "savedApplications": {
+    "empty": "لا توجد طلبات محفوظة. أرسل طلباً من طلب جديد.",
+    "application": "طلب",
+    "viewApplication": "عرض الطلب"
+  },
+  "applicationDetail": {
+    "title": "طلب",
+    "submittedAt": "تاريخ الإرسال",
+    "notFound": "الطلب غير موجود.",
+    "backToList": "العودة إلى الطلبات المحفوظة",
+    "jsonLabel": "بيانات الطلب (JSON)"
+  },
+  "steps": {
+    "personalInfo": "المعلومات الشخصية",
+    "familyFinancial": "معلومات الأسرة والمالية",
+    "situationDescriptions": "وصف الوضع"
+  },
+  "form": {
+    "name": "الاسم الكامل",
+    "nationalId": "رقم الهوية الوطنية",
+    "dateOfBirth": "تاريخ الميلاد",
+    "gender": "الجنس",
+    "address": "العنوان",
+    "city": "المدينة",
+    "state": "الولاية/المحافظة",
+    "country": "الدولة",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "maritalStatus": "الحالة الاجتماعية",
+    "dependents": "عدد المعالين",
+    "employmentStatus": "حالة التوظيف",
+    "monthlyIncome": "الدخل الشهري",
+    "housingStatus": "حالة السكن",
+    "currentFinancialSituation": "الوضع المالي الحالي",
+    "employmentCircumstances": "ظروف العمل",
+    "reasonForApplying": "سبب التقديم",
+    "helpMeWrite": "ساعدني في الكتابة"
+  },
+  "gender": {
+    "male": "ذكر",
+    "female": "أنثى",
+    "other": "آخر",
+    "preferNotToSay": "أفضل عدم الإجابة"
+  },
+  "maritalStatus": {
+    "single": "أعزب",
+    "married": "متزوج",
+    "divorced": "مطلق",
+    "widowed": "أرمل"
+  },
+  "employmentStatus": {
+    "employed": "موظف",
+    "unemployed": "عاطل عن العمل",
+    "selfEmployed": "يعمل لحسابه الخاص",
+    "student": "طالب",
+    "retired": "متقاعد",
+    "other": "آخر"
+  },
+  "housingStatus": {
+    "own": "ملك",
+    "rent": "إيجار",
+    "livingWithFamily": "يعيش مع العائلة",
+    "homeless": "بدون مأوى",
+    "other": "آخر"
+  },
+  "actions": {
+    "next": "التالي",
+    "previous": "السابق",
+    "submit": "إرسال الطلب",
+    "accept": "قبول",
+    "edit": "تعديل",
+    "discard": "تجاهل",
+    "close": "إغلاق"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "invalidPhone": "يرجى إدخال رقم هاتف صحيح",
+    "minLength": "الحد الأدنى {{min}} أحرف",
+    "maxLength": "الحد الأقصى {{max}} أحرف"
+  },
+  "ai": {
+    "generating": "جاري إنشاء الاقتراح...",
+    "suggestionTitle": "اقتراح الذكاء الاصطناعي",
+    "error": "فشل في إنشاء الاقتراح. يرجى المحاولة مرة أخرى.",
+    "timeout": "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى."
+  },
+  "toast": {
+    "saveSuccess": "تم حفظ التقدم بنجاح",
+    "submitSuccess": "تم إرسال الطلب بنجاح",
+    "submitError": "فشل إرسال الطلب",
+    "loadError": "فشل تحميل التقدم المحفوظ"
+  },
+  "errors": {
+    "completePreviousStep": "يرجى إكمال الخطوة السابقة قبل المتابعة."
+  }
+}
