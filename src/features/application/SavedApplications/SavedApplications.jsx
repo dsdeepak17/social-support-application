@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { listSavedApplications } from '@/utils/applicationStorage';
+import { ROUTES } from '@/constants';
 
 export function SavedApplications() {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ export function SavedApplications() {
           {applications.map(({ applicationId, submittedAt }) => (
             <li key={applicationId}>
               <Link
-                to={`/application/${applicationId}`}
+                to={ROUTES.APPLICATION_DETAIL(applicationId)}
                 className="saved-application-link"
                 aria-label={`${t('savedApplications.viewApplication')} ${applicationId}`}
               >

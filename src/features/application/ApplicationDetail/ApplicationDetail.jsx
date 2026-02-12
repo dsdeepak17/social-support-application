@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useParams, Link } from 'react-router-dom';
 import { getApplicationResponse } from '@/utils/applicationStorage';
+import { ROUTES } from '@/constants';
 
 export function ApplicationDetail() {
   const { t } = useTranslation();
@@ -11,7 +12,7 @@ export function ApplicationDetail() {
     return (
       <div className="application-detail" role="main">
         <p className="application-detail-not-found">{t('applicationDetail.notFound')}</p>
-        <Link to="/applications/submitted" className="application-detail-back">
+        <Link to={ROUTES.APPLICATIONS.SUBMITTED} className="application-detail-back">
           {t('applicationDetail.backToList')}
         </Link>
       </div>
@@ -23,7 +24,7 @@ export function ApplicationDetail() {
   return (
     <div className="application-detail" role="main">
       <div className="application-detail-header">
-        <Link to="/applications/submitted" className="application-detail-back">
+        <Link to={ROUTES.APPLICATIONS.SUBMITTED} className="application-detail-back">
           {t('applicationDetail.backToList')}
         </Link>
         <h2 className="page-title">

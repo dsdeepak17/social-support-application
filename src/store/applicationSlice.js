@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { STORAGE_KEYS, STEPS } from '@/constants';
 
-const STORAGE_KEY = 'social-support-application';
+const STORAGE_KEY = STORAGE_KEYS.APPLICATION_FORM;
 
 const getInitialFormState = () => ({
   // Step 1: Personal Information
@@ -27,7 +28,7 @@ const getInitialFormState = () => ({
 });
 
 const getInitialState = () => ({
-  currentStep: 1,
+  currentStep: STEPS.STEP_1,
   formState: getInitialFormState(),
   step1Complete: false,
   step2Complete: false,
@@ -65,10 +66,10 @@ const applicationSlice = createSlice({
       state.currentStep = action.payload;
     },
     nextStep(state) {
-      if (state.currentStep < 3) state.currentStep += 1;
+      if (state.currentStep < STEPS.MAX_STEP) state.currentStep += 1;
     },
     prevStep(state) {
-      if (state.currentStep > 1) state.currentStep -= 1;
+      if (state.currentStep > STEPS.MIN_STEP) state.currentStep -= 1;
     },
     updateField(state, action) {
       const { field, value } = action.payload;

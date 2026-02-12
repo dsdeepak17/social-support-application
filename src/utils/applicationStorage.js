@@ -1,4 +1,6 @@
-const RESPONSE_PREFIX = 'response-';
+import { STORAGE_KEYS } from '@/constants';
+
+const RESPONSE_PREFIX = STORAGE_KEYS.RESPONSE_PREFIX;
 
 /**
  * Generate a unique application ID (numeric).

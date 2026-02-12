@@ -5,6 +5,7 @@ import { Step1PersonalInfo } from '@/features/application/steps/Step1PersonalInf
 import { Step2FamilyFinancial } from '@/features/application/steps/Step2FamilyFinancial';
 import { Step3SituationDescriptions } from '@/features/application/steps/Step3SituationDescriptions';
 import { usePersistForm } from '@/hooks/usePersistForm';
+import { STEPS } from '@/constants';
 
 /**
  * Main 3-step application wizard.
@@ -19,11 +20,11 @@ export function ApplicationWizard() {
 
   const stepContent = () => {
     switch (currentStep) {
-      case 1:
+      case STEPS.STEP_1:
         return <Step1PersonalInfo />;
-      case 2:
+      case STEPS.STEP_2:
         return <Step2FamilyFinancial />;
-      case 3:
+      case STEPS.STEP_3:
         return <Step3SituationDescriptions />;
       default:
         return <Step1PersonalInfo />;

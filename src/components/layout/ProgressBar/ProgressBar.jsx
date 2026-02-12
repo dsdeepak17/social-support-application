@@ -3,12 +3,7 @@ import { Progress } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStep } from '@/store/applicationSlice';
 import { Toast } from '@/components/ui';
-
-const STEPS = [
-  { key: 'personalInfo', step: 1 },
-  { key: 'familyFinancial', step: 2 },
-  { key: 'situationDescriptions', step: 3 },
-];
+import { STEPS } from '@/constants';
 
 /**
  * Progress bar for the 3-step application wizard.
@@ -16,18 +11,18 @@ const STEPS = [
  */
 export function ProgressBar({ currentStep }) {
   const { t } = useTranslation();
-  const percent = (currentStep / 3) * 100;
+  const percent = (currentStep / STEPS.MAX_STEP) * 100;
   const dispatch = useDispatch();
   const step1Complete = useSelector((state) => state.application.step1Complete);
   const step2Complete = useSelector((state) => state.application.step2Complete);
 
   const goToStep = (step) => {
-    if (step === 2) {
+    if (step === STEPS.STEP_2) {
       if (!step1Complete) {
         Toast.error(t('errors.completePreviousStep'));
         return;
       }
-    } else if (step === 3) {
+    } else if (step === STEPS.STEP_3) {
       if (!step2Complete) {
         Toast.error(t('errors.completePreviousStep'));
         return;
@@ -41,13 +36,13 @@ export function ProgressBar({ currentStep }) {
     <div
       role="progressbar"
       aria-valuenow={currentStep}
-      aria-valuemin={1}
-      aria-valuemax={3}
+      aria-valuemin={STEPS.MIN_STEP}
+      aria-valuemax={STEPS.MAX_STEP}
       aria-label={t('steps.personalInfo')}
       className="progress-bar-wrapper"
     >
       <div className="progress-steps" role="list">
-        {STEPS.map(({ key, step }) => (
+        {STEPS.STEP_CONFIG.map(({ key, step }) => (
           <div
             key={key}
             role="listitem"
