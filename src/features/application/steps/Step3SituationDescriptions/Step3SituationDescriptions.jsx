@@ -24,6 +24,19 @@ const PROMPT_PREFIX = {
   reasonForApplying: 'I need to explain my reason for applying for financial assistance. Help me write a clear explanation. Context: ',
 };
 
+/** Build context string from Step 1 & 2 form state for AI prompts when fields are empty. */
+function buildApplicantContext(formState, t) {
+  const parts = [];
+  // if (formState.name?.trim()) parts.push(`Name: ${formState.name.trim()}`);
+  if (formState.maritalStatus) parts.push(`Marital status: ${t(`maritalStatus.${formState.maritalStatus}`) || formState.maritalStatus}`);
+  if (formState.dependents != null && formState.dependents !== '') parts.push(`Dependents: ${formState.dependents}`);
+  if (formState.employmentStatus) parts.push(`Employment: ${t(`employmentStatus.${formState.employmentStatus}`) || formState.employmentStatus}`);
+  if (formState.monthlyIncome != null && formState.monthlyIncome !== '') parts.push(`Monthly income: ${formState.monthlyIncome}`);
+  if (formState.housingStatus) parts.push(`Housing: ${t(`housingStatus.${formState.housingStatus}`) || formState.housingStatus}`);
+  if (parts.length === 0) return '';
+  return parts.join('. ');
+}
+
 export function Step3SituationDescriptions({ onPrev, onSubmitSuccess }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -52,9 +65,12 @@ export function Step3SituationDescriptions({ onPrev, onSubmitSuccess }) {
   const handleHelpMeWrite = async (fieldName) => {
     const context = watch(fieldName) || '';
     const prefix = PROMPT_PREFIX[fieldName];
+    const applicantContext = buildApplicantContext(applicationForm, t);
     const userPrompt = context.trim()
       ? `${prefix}${context}`
-      : 'I am applying for financial assistance. Help me write a brief, professional description for this section.';
+      : applicantContext
+        ? `${prefix} Applicant context: ${applicantContext}. Help me write a brief, professional description for this section based on this.`
+        : `I am applying for financial assistance. Help me write a brief, professional description for this section: ${prefix}`;
 
     setActiveField(fieldName);
     setModalSuggestion('');
