@@ -24,16 +24,28 @@ const PROMPT_PREFIX = {
   reasonForApplying: 'I need to explain my reason for applying for financial assistance. Help me write a clear explanation. Context: ',
 };
 
-/** Build context string from Step 1 & 2 form state for AI prompts when fields are empty. */
-function buildApplicantContext(formState, t) {
-  const parts = [];
-  // if (formState.name?.trim()) parts.push(`Name: ${formState.name.trim()}`);
-  if (formState.maritalStatus) parts.push(`Marital status: ${t(`maritalStatus.${formState.maritalStatus}`) || formState.maritalStatus}`);
-  if (formState.dependents != null && formState.dependents !== '') parts.push(`Dependents: ${formState.dependents}`);
-  if (formState.employmentStatus) parts.push(`Employment: ${t(`employmentStatus.${formState.employmentStatus}`) || formState.employmentStatus}`);
-  if (formState.monthlyIncome != null && formState.monthlyIncome !== '') parts.push(`Monthly income: ${formState.monthlyIncome}`);
-  if (formState.housingStatus) parts.push(`Housing: ${t(`housingStatus.${formState.housingStatus}`) || formState.housingStatus}`);
-  if (parts.length === 0) return '';
+/** Which Step 2 (and Step 1) fields are relevant context for each Step 3 field. */
+const CONTEXT_FIELDS_BY_STEP3_FIELD = {
+  currentFinancialSituation: ['monthlyIncome', 'maritalStatus', 'dependents', 'housingStatus'],
+  employmentCircumstances: ['employmentStatus', 'monthlyIncome'],
+  reasonForApplying: ['maritalStatus', 'dependents', 'employmentStatus', 'monthlyIncome', 'housingStatus'],
+};
+
+const CONTEXT_LABELS = {
+  maritalStatus: (formState, t) => formState.maritalStatus ? `Marital status: ${t(`maritalStatus.${formState.maritalStatus}`) || formState.maritalStatus}` : null,
+  dependents: (formState) => (formState.dependents != null && formState.dependents !== '') ? `Dependents: ${formState.dependents}` : null,
+  employmentStatus: (formState, t) => formState.employmentStatus ? `Employment: ${t(`employmentStatus.${formState.employmentStatus}`) || formState.employmentStatus}` : null,
+  monthlyIncome: (formState) => (formState.monthlyIncome != null && formState.monthlyIncome !== '') ? `Monthly income: ${formState.monthlyIncome}` : null,
+  housingStatus: (formState, t) => formState.housingStatus ? `Housing: ${t(`housingStatus.${formState.housingStatus}`) || formState.housingStatus}` : null,
+};
+
+/** Build context string from form state for the given Step 3 field (only includes relevant fields). */
+function buildApplicantContext(fieldName, formState, t) {
+  const keys = CONTEXT_FIELDS_BY_STEP3_FIELD[fieldName];
+  if (!keys) return '';
+  const parts = keys
+    .map((key) => (CONTEXT_LABELS[key] ? CONTEXT_LABELS[key](formState, t) : null))
+    .filter(Boolean);
   return parts.join('. ');
 }
 
@@ -65,12 +77,12 @@ export function Step3SituationDescriptions({ onPrev, onSubmitSuccess }) {
   const handleHelpMeWrite = async (fieldName) => {
     const context = watch(fieldName) || '';
     const prefix = PROMPT_PREFIX[fieldName];
-    const applicantContext = buildApplicantContext(applicationForm, t);
+    const applicantContext = buildApplicantContext(fieldName, applicationForm, t);
     const userPrompt = context.trim()
       ? `${prefix}${context}`
       : applicantContext
         ? `${prefix} Applicant context: ${applicantContext}. Help me write a brief, professional description for this section based on this.`
-        : `I am applying for financial assistance. Help me write a brief, professional description for this section: ${prefix}`;
+        : `${prefix}`;
 
     setActiveField(fieldName);
     setModalSuggestion('');
